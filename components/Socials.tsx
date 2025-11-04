@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FaXTwitter } from 'react-icons/fa6';
+import { FaFacebook } from "react-icons/fa";
 import { FiGithub, FiLinkedin } from 'react-icons/fi';
 
 export default function Socials() {
@@ -33,7 +33,7 @@ export default function Socials() {
   return (
     <div className="mt-6 flex gap-4">
       <a
-        href="https://github.com/Ayushdas1904"
+        href="https://github.com/P-pyy"
         target="_blank"
         rel="noopener noreferrer"
         className={`p-5 rounded-lg transition-all duration-300 transform hover:-translate-y-[4px] dark:brightness-75 ${hoverClass}`}
@@ -43,7 +43,7 @@ export default function Socials() {
       </a>
 
       <a
-        href="https://www.linkedin.com/in/ayush-das-4674a1239/"
+        href="https://www.linkedin.com/in/chrestine-hiangan-26146a384/"
         target="_blank"
         rel="noopener noreferrer"
         className={`p-5 rounded-lg transition-all duration-300 transform hover:-translate-y-[4px] dark:brightness-75 ${hoverClass}`}
@@ -53,13 +53,13 @@ export default function Socials() {
       </a>
 
       <a
-        href="https://x.com/das_codes"
+        href="https://www.facebook.com/chrest.hiangan/"
         target="_blank"
         rel="noopener noreferrer"
         className={`p-5 rounded-lg transition-all duration-300 transform hover:-translate-y-[4px] dark:brightness-75 ${hoverClass}`}
         style={isDarkMode ? darkShadow : lightShadow}
       >
-        <FaXTwitter className="w-6 h-6" />
+        <FaFacebook className="w-6 h-6" />
       </a>
     </div>
   );
