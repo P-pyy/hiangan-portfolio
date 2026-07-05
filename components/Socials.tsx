@@ -38,7 +38,7 @@ export default function Socials() {
         href="https://github.com/P-pyy"
         target="_blank"
         rel="noopener noreferrer"
-        className={`p-5 rounded-lg transition-all duration-300 transform hover:-translate-y-[4px] dark:brightness-75 ${hoverClass}`}
+        className={`p-5 rounded-lg transition-all duration-300 transform hover:-translate-y-[4px] dark:brightness-75 bg-white/70 dark:bg-black/50 ${hoverClass}`}
         style={isDarkMode ? darkShadow : lightShadow}
       >
         <FiGithub className="w-6 h-6" />
@@ -48,7 +48,7 @@ export default function Socials() {
         href="https://www.linkedin.com/in/chrestine-hiangan-26146a384/"
         target="_blank"
         rel="noopener noreferrer"
-        className={`p-5 rounded-lg transition-all duration-300 transform hover:-translate-y-[4px] dark:brightness-75 ${hoverClass}`}
+        className={`p-5 rounded-lg transition-all duration-300 transform hover:-translate-y-[4px] dark:brightness-75 bg-white/70 dark:bg-black/50 ${hoverClass}`}
         style={isDarkMode ? darkShadow : lightShadow}
       >
         <FiLinkedin className="w-6 h-6" />
@@ -58,7 +58,7 @@ export default function Socials() {
         href="https://www.facebook.com/chrest.hiangan/"
         target="_blank"
         rel="noopener noreferrer"
-        className={`p-5 rounded-lg transition-all duration-300 transform hover:-translate-y-[4px] dark:brightness-75 ${hoverClass}`}
+        className={`p-5 rounded-lg transition-all duration-300 transform hover:-translate-y-[4px] dark:brightness-75 bg-white/70 dark:bg-black/50 ${hoverClass}`}
         style={isDarkMode ? darkShadow : lightShadow}
       >
         <FaFacebook className="w-6 h-6" />

@@ -53,7 +53,7 @@ export default function Contact() {
 
       <form
         onSubmit={handleSubmit}
-        className=" mx-auto flex flex-col gap-4"
+        className="mx-auto flex flex-col gap-4 bg-white/70 dark:bg-black/50 p-8 rounded-lg"
       >
         <input
           type="text"

@@ -45,7 +45,7 @@ export default function SkillCard({
 
   return (
     <div
-      className="group w-24 sm:w-28 h-24 sm:h-28 rounded-lg flex flex-col items-center justify-center transition-all duration-300"
+      className="group w-24 sm:w-28 h-24 sm:h-28 rounded-lg flex flex-col items-center justify-center transition-all duration-300 bg-white/70 dark:bg-black/50"
       style={isDarkMode ? darkShadow : lightShadow}
     >
       {typeof icon === "string" ? (
