@@ -54,7 +54,7 @@ export function Home() {
           </p>
 
           {/* Typewriter animation */}
-          <span className="mt-4 text-lg sm:text-3xl font-medium block text-zinc-800 dark:text-zinc-200">
+          <span className="mt-4 text-lg sm:text-3xl font-medium block text-zinc-900 dark:text-white">
             <Typewriter
               options={{
                 strings: [
