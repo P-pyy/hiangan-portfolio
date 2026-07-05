@@ -58,9 +58,9 @@ export function Home() {
             <Typewriter
               options={{
                 strings: [
-                  "Computer Engineer 👩🏻‍💻",
+                  "Computer Engineer 💻",
                   "Full Stack Developer 💻",
-                  "Tech Enthusiast 🚀",
+                  "Tech Enthusiast 💻",
                 ],
                 autoStart: true,
                 loop: true,
