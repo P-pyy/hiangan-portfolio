@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { useTheme } from 'next-themes';
 import { FaFacebook } from "react-icons/fa";
 import { FiGithub, FiLinkedin } from 'react-icons/fi';
 
 export default function Socials() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      setIsDarkMode(window.matchMedia('(prefers-color-scheme: dark)').matches);
-    }
+    setMounted(true);
   }, []);
 
   const lightShadow = {
@@ -25,6 +25,8 @@ export default function Socials() {
       rgba(160, 160, 160, 0.15) 0px 6px 10px
     `
   };
+
+  const isDarkMode = mounted && resolvedTheme === 'dark';
 
   const hoverClass = isDarkMode
     ? 'hover:brightness-200'
