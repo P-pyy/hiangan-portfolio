@@ -10,6 +10,7 @@ import Preloader from "@/components/Preloader";
 import { LightPullThemeSwitcher } from "@/components/ui/light-pull-theme-switcher";
 import { Cursor } from "@/components/ui/Cursor";
 import { Toaster } from "sonner";
+import AnimatedBackground from "@/components/AnimatedBackground";
 
 
 export const metadata: Metadata = {
@@ -29,6 +30,7 @@ export default function RootLayout({
         className={poppins.className}
       >
         <Providers>
+          <AnimatedBackground />
           {/* <CustomCursor /> */}
           <Cursor />
           {/* <ThemeToggle /> */}
