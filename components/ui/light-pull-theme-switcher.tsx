@@ -2,15 +2,21 @@
 
 import { motion } from "framer-motion"
 import { ChevronDown } from "lucide-react"
+import { useTheme } from "next-themes"
+import { useEffect, useState } from "react"
 
 export function LightPullThemeSwitcher() {
+  const { resolvedTheme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) return null
+
   const toggleDarkMode = () => {
-    const root = document.documentElement
-    root.classList.toggle("dark")
-    localStorage.setItem(
-      "theme",
-      root.classList.contains("dark") ? "dark" : "light"
-    )
+    setTheme(resolvedTheme === "dark" ? "light" : "dark")
   }
 
   return (
