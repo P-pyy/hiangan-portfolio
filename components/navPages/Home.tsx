@@ -28,41 +28,28 @@ export function Home() {
   return (
     <section
       id="home"
-      className="w-full max-w-5xl flex flex-col items-center justify-center px-6 pt-20 pb-24 sm:min-h-screen relative"
+      className="w-full max-w-5xl flex flex-col items-center justify-center px-6 pt-0 pb-24 sm:min-h-screen relative"
     >
       {/* Main content */}
       <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-10 w-full">
         {/* Left section */}
-        <div className="flex-1 text-center md:text-left">
-          <div className="flex items-center justify-center md:justify-start gap-2">
-            <h1 className="text-4xl sm:text-6xl font-bold">
-              Hi, I’m{" "}
-              <span className="text-[#e8390d] dark:text-[#ff6347]">
-                Chrestine
-              </span>
+        <div className="flex-1 text-center">
+          <div className="relative flex flex-col items-center">
+            <h2 className="text-2xl sm:text-3xl font-bold">
+              Hi, I'm
+            </h2>
+
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#e8390d] dark:text-[#ff6347]">
+              Chrestine Hiangan
             </h1>
-            <span
-              className="text-4xl sm:text-5xl"
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-              style={{
-                transformOrigin: "70% 70%",
-                animation: isHovered
-                  ? "wave 1.2s ease-in-out infinite"
-                  : "none",
-                display: "inline-block",
-              }}
-            >
-              👋
-            </span>
           </div>
 
           <p
             className={`${
               jetbrainsMono?.className || ""
-            } flex items-center mt-4 text-[#dd431d] gap-2 text-sm sm:text-lg`}
+            } flex items-center justify-center mt-4 text-[#dd431d] gap-2 text-sm sm:text-lg`}
           >
-            <MapPin />
+            <MapPin className="w-5 h-5" />
             Teresa, Rizal, Philippines
           </p>
 
@@ -71,9 +58,9 @@ export function Home() {
             <Typewriter
               options={{
                 strings: [
-                  "A Passionate Developer 💻",
-                  "A Creative Thinker 🎨",
-                  "A Tech Enthusiast 🚀",
+                  "Computer Engineer 👩🏻‍💻",
+                  "Full Stack Developer 💻",
+                  "Tech Enthusiast 🚀",
                 ],
                 autoStart: true,
                 loop: true,
@@ -86,7 +73,7 @@ export function Home() {
           {/* Description */}
           <p className="max-w-md text-gray-600 dark:text-gray-400 leading-relaxed mt-6 mx-auto md:mx-0">
             I love building colorful, fun, and interactive web experiences using{" "}
-            <b>Next.js</b>, <b>Tailwind CSS</b>, and my imagination 💡
+            <b>programming languages</b>, <b>modern technologies</b>, and my imagination 💡
           </p>
 
           {/* Buttons */}
