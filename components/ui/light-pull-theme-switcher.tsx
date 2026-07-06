@@ -20,7 +20,7 @@ export function LightPullThemeSwitcher() {
   }
 
   return (
-    <div className="w-full px-4 flex justify-end sm:fixed sm:top-4 sm:right-4 sm:w-auto sm:px-0 z-50">
+    <div className="fixed top-4 right-1 z-50 flex justify-end px-4 sm:px-0 sm:right-8">
       <div className="flex flex-col items-center gap-2 text-xs sm:text-sm text-foreground font-medium select-none">
         <div className="p-6">
           <motion.div

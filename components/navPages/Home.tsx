@@ -28,7 +28,7 @@ export function Home() {
   return (
     <section
       id="home"
-      className="w-full max-w-5xl flex flex-col items-center justify-center px-6 pt-0 pb-24 sm:min-h-screen relative"
+      className="w-full max-w-5xl flex flex-col items-center justify-start px-6 pt-8 pb-24 sm:min-h-screen md:justify-center md:pt-0 relative"
     >
       {/* Main content */}
       <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-10 w-full">

@@ -27,6 +27,36 @@ const projects = [
     github: "https://github.com/P-pyy/REIGI",
     live: "https://reigi.vercel.app/",
   },
+
+  {
+    title: "Reigi Kiosk",
+    description: "A website that provides assistant to students regarding registrar-related student problems",
+    thumbnail: "/project1.png",
+    techStack: ["node", "express"],
+    gradient: "#51fbfb, rgb(13, 1, 60)",
+    github: "https://github.com/P-pyy/REIGI",
+    live: "https://reigi.vercel.app/",
+  },
+
+  {
+    title: "Dream PC Build & IT Solutions",
+    description: "A website that provides assistant to students regarding registrar-related student problems",
+    thumbnail: "/project2.png",
+    techStack: ["node", "express"],
+    gradient: "#51fbfb, rgb(13, 1, 60)",
+    github: "https://github.com/auxclark/dreampcbuildanditsolutionsinc",
+    live: "https://dreampcbuild.com/",
+  },
+
+  {
+    title: "DPC Management System",
+    description: "A website that provides assistant to students regarding registrar-related student problems",
+    thumbnail: "/project1.png",
+    techStack: ["node", "express"],
+    gradient: "#51fbfb, rgb(13, 1, 60)",
+    github: "https://github.com/Dream-PC-Build-and-I-T-Solutions/DPC",
+    live: "https://reigi.vercel.app/",
+  },
 ];
 
 export function Projects() {
