@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import React, { useEffect, useState } from "react";
 import { jetbrainsMono } from "@/app/font";
 import { X, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
