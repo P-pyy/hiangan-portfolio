@@ -22,6 +22,8 @@ const projects = [
     title: "Reigi",
     description: "A website that provides assistant to students regarding registrar-related student problems",
     thumbnail: "/project1.png",
+    images: ["/project1.png", "/project1.png"],
+    video: "", // add a video file path or leave empty
     techStack: ["node", "express"],
     gradient: "#51fbfb, rgb(13, 1, 60)",
     github: "https://github.com/P-pyy/REIGI",

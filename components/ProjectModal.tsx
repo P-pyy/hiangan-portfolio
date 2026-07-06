@@ -1,8 +1,9 @@
 "use client";
+
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { jetbrainsMono } from "@/app/font";
-import { X, ExternalLink } from "lucide-react";
+import { X, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import { FiGithub } from "react-icons/fi";
 import Tilt from "react-parallax-tilt";
 import { techIconMap } from "./navPages/Projects";
@@ -10,7 +11,9 @@ import { techIconMap } from "./navPages/Projects";
 interface ProjectModalProps {
   title: string;
   description: string;
-  thumbnail: string;
+  thumbnail?: string;
+  images?: (string | StaticImageData)[];
+  video?: string; // video URL or src
   techStack: string[];
   gradient: string;
   github: string;
@@ -22,6 +25,8 @@ export default function ProjectModal({
   title,
   description,
   thumbnail,
+  images = [],
+  video,
   techStack,
   gradient,
   github,
@@ -29,12 +34,21 @@ export default function ProjectModal({
   onClose,
 }: ProjectModalProps) {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const [tab, setTab] = useState<"images" | "video">("images");
+  const [index, setIndex] = useState(0);
 
   useEffect(() => {
+    setMounted(true);
     if (typeof window !== "undefined") {
       setIsDarkMode(window.matchMedia("(prefers-color-scheme: dark)").matches);
     }
   }, []);
+
+  useEffect(() => {
+    // reset index when images change
+    setIndex(0);
+  }, [images]);
 
   const lightShadow = {
     boxShadow: `
@@ -48,6 +62,19 @@ export default function ProjectModal({
       rgba(255, 255, 255, 0.2) 0px 4px 12px,
       rgba(255, 255, 255, 0.1) 0px 8px 24px
     `,
+  };
+
+  const showVideoTab = Boolean(video);
+  const hasImages = images && images.length > 0;
+
+  const prev = () => {
+    if (!hasImages) return;
+    setIndex((i) => (i - 1 + images.length) % images.length);
+  };
+
+  const next = () => {
+    if (!hasImages) return;
+    setIndex((i) => (i + 1) % images.length);
   };
 
   return (
@@ -80,14 +107,89 @@ export default function ProjectModal({
           </h2>
           <p className="text-sm sm:text-base text-white/80">{description}</p>
 
-          {/* Image */}
-          <div className="relative w-full min-h-[200px] sm:min-h-[420px] flex justify-center rounded-2xl">
-            <Image
-              src={thumbnail}
-              alt="project"
-              fill
-              className="rounded-2xl w-[90%] sm:w-[80%] md:w-[400px]"
-            />
+          {/* Media area */}
+          <div className="w-full flex flex-col items-center gap-4">
+            {/* Tabs */}
+            <div className="flex items-center gap-2 bg-white/10 rounded-full p-1">
+              <button
+                onClick={() => setTab("images")}
+                className={`px-3 py-1 rounded-full ${tab === "images" ? "bg-white text-black" : "text-white/80"}`}
+              >
+                Images
+              </button>
+              {showVideoTab && (
+                <button
+                  onClick={() => setTab("video")}
+                  className={`px-3 py-1 rounded-full ${tab === "video" ? "bg-white text-black" : "text-white/80"}`}
+                >
+                  Video
+                </button>
+              )}
+            </div>
+
+            <div className="relative w-full min-h-[220px] sm:min-h-[420px] flex items-center justify-center px-2 sm:px-0">
+              {/* Left arrow (larger on mobile for touch) */}
+              {hasImages && tab === "images" && (
+                <button
+                  onClick={(e) => { e.stopPropagation(); prev(); }}
+                  className="absolute left-2 sm:left-3 -translate-x-5 z-40 w-12 h-12 sm:w-10 sm:h-10 rounded-full bg-black/60 text-white flex items-center justify-center hover:scale-105"
+                >
+                  <ChevronLeft size={22} />
+                </button>
+              )}
+
+              {/* Media */}
+              <div className="rounded-2xl overflow-hidden w-[95%] sm:w-[85%] md:w-[680px]">
+                {tab === "images" && hasImages && (
+                  <div className="relative w-full h-[240px] sm:h-[420px] md:h-[480px] bg-black/10 flex items-center justify-center">
+                    <Image
+                      src={images[index]}
+                      alt={`${title} image ${index + 1}`}
+                      width={1200}
+                      height={700}
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
+                )}
+
+                {tab === "images" && !hasImages && thumbnail && (
+                  <div className="relative w-full h-[240px] sm:h-[420px] md:h-[480px] bg-black/10 flex items-center justify-center">
+                    <Image src={thumbnail} alt={title} width={1200} height={700} className="object-cover w-full h-full" />
+                  </div>
+                )}
+
+                {tab === "video" && showVideoTab && (
+                  <div className="w-full h-[240px] sm:h-[420px] md:h-[480px] bg-black/10 flex items-center justify-center">
+                    <video src={video} controls className="w-full h-full object-cover" />
+                  </div>
+                )}
+              </div>
+
+              {/* Right arrow (larger on mobile for touch) */}
+              {hasImages && tab === "images" && (
+                <button
+                  onClick={(e) => { e.stopPropagation(); next(); }}
+                  className="absolute right-2 sm:right-3 translate-x-5 z-40 w-12 h-12 sm:w-10 sm:h-10 rounded-full bg-black/60 text-white flex items-center justify-center hover:scale-105"
+                >
+                  <ChevronRight size={22} />
+                </button>
+              )}
+            </div>
+
+            {/* Dots */}
+            {hasImages && tab === "images" && (
+              <div className="flex items-center gap-2 mt-2">
+                {images.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={(e) => { e.stopPropagation(); setIndex(i); }}
+                    className={`w-2 h-2 rounded-full ${i === index ? "bg-white" : "bg-white/30"}`}
+                  />
+                ))}
+              </div>
+            )}
+
+            {/* Thumbnail strip removed per request */}
           </div>
 
           {/* Links & Tech Stack */}
