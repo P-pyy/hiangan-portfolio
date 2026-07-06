@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 
 interface SkillCardProps {
@@ -15,13 +16,14 @@ export default function SkillCard({
   icon,
   hoverColor = "group-hover:text-black dark:group-hover:text-white",
 }: SkillCardProps) {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      setIsDarkMode(window.matchMedia("(prefers-color-scheme: dark)").matches);
-    }
+    setMounted(true);
   }, []);
+
+  const isDarkMode = mounted && resolvedTheme === "dark";
 
   const lightShadow = {
     boxShadow: `
