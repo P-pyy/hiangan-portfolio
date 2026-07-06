@@ -65,16 +65,18 @@ export default function ProjectModal({
   };
 
   const showVideoTab = Boolean(video);
-  const hasImages = images && images.length > 0;
+  const displayImages = (images && images.length > 0) ? images : (thumbnail ? [thumbnail] : []);
+  const hasImages = displayImages.length > 0;
+  const multipleImages = displayImages.length > 1;
 
   const prev = () => {
     if (!hasImages) return;
-    setIndex((i) => (i - 1 + images.length) % images.length);
+    setIndex((i) => (i - 1 + displayImages.length) % displayImages.length);
   };
 
   const next = () => {
     if (!hasImages) return;
-    setIndex((i) => (i + 1) % images.length);
+    setIndex((i) => (i + 1) % displayImages.length);
   };
 
   return (
@@ -108,28 +110,10 @@ export default function ProjectModal({
           <p className="text-sm sm:text-base text-white/80">{description}</p>
 
           {/* Media area */}
-          <div className="w-full flex flex-col items-center gap-4">
-            {/* Tabs */}
-            <div className="flex items-center gap-2 bg-white/10 rounded-full p-1">
-              <button
-                onClick={() => setTab("images")}
-                className={`px-3 py-1 rounded-full ${tab === "images" ? "bg-white text-black" : "text-white/80"}`}
-              >
-                Images
-              </button>
-              {showVideoTab && (
-                <button
-                  onClick={() => setTab("video")}
-                  className={`px-3 py-1 rounded-full ${tab === "video" ? "bg-white text-black" : "text-white/80"}`}
-                >
-                  Video
-                </button>
-              )}
-            </div>
-
+          <div className="w-full flex flex-col items-center gap-0">
             <div className="relative w-full min-h-[220px] sm:min-h-[420px] flex items-center justify-center px-2 sm:px-0">
               {/* Left arrow (larger on mobile for touch) */}
-              {hasImages && tab === "images" && (
+              {hasImages && multipleImages && tab === "images" && (
                 <button
                   onClick={(e) => { e.stopPropagation(); prev(); }}
                   className="absolute left-2 sm:left-3 -translate-x-5 z-40 w-12 h-12 sm:w-10 sm:h-10 rounded-full bg-black/60 text-white flex items-center justify-center hover:scale-105"
@@ -140,33 +124,27 @@ export default function ProjectModal({
 
               {/* Media */}
               <div className="rounded-2xl overflow-hidden w-[95%] sm:w-[85%] md:w-[680px]">
-                {tab === "images" && hasImages && (
-                  <div className="relative w-full h-[240px] sm:h-[420px] md:h-[480px] bg-black/10 flex items-center justify-center">
+                {hasImages && (
+                  <div className="w-full bg-black/10 flex items-center justify-center">
                     <Image
-                      src={images[index]}
+                      src={displayImages[index]}
                       alt={`${title} image ${index + 1}`}
                       width={1200}
                       height={700}
-                      className="object-cover w-full h-full"
+                      className="object-contain w-full h-auto"
                     />
                   </div>
                 )}
 
-                {tab === "images" && !hasImages && thumbnail && (
-                  <div className="relative w-full h-[240px] sm:h-[420px] md:h-[480px] bg-black/10 flex items-center justify-center">
-                    <Image src={thumbnail} alt={title} width={1200} height={700} className="object-cover w-full h-full" />
-                  </div>
-                )}
-
-                {tab === "video" && showVideoTab && (
-                  <div className="w-full h-[240px] sm:h-[420px] md:h-[480px] bg-black/10 flex items-center justify-center">
-                    <video src={video} controls className="w-full h-full object-cover" />
+                {!hasImages && showVideoTab && (
+                  <div className="w-full bg-black/10 flex items-center justify-center">
+                    <video src={video} controls className="w-full h-auto" />
                   </div>
                 )}
               </div>
 
               {/* Right arrow (larger on mobile for touch) */}
-              {hasImages && tab === "images" && (
+              {hasImages && multipleImages && tab === "images" && (
                 <button
                   onClick={(e) => { e.stopPropagation(); next(); }}
                   className="absolute right-2 sm:right-3 translate-x-5 z-40 w-12 h-12 sm:w-10 sm:h-10 rounded-full bg-black/60 text-white flex items-center justify-center hover:scale-105"
@@ -177,9 +155,9 @@ export default function ProjectModal({
             </div>
 
             {/* Dots */}
-            {hasImages && tab === "images" && (
-              <div className="flex items-center gap-2 mt-2">
-                {images.map((_, i) => (
+            {hasImages && multipleImages && tab === "images" && (
+              <div className="flex items-center gap-2 -mt-1">
+                {displayImages.map((_, i) => (
                   <button
                     key={i}
                     onClick={(e) => { e.stopPropagation(); setIndex(i); }}
