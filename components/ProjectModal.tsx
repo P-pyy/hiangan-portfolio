@@ -132,7 +132,7 @@ export default function ProjectModal({
               {hasImages && tab === "images" && (
                 <button
                   onClick={(e) => { e.stopPropagation(); prev(); }}
-                  className="absolute left-2 sm:left-3 z-40 w-12 h-12 sm:w-10 sm:h-10 rounded-full bg-black/60 text-white flex items-center justify-center hover:scale-105"
+                  className="absolute left-2 sm:left-3 -translate-x-5 z-40 w-12 h-12 sm:w-10 sm:h-10 rounded-full bg-black/60 text-white flex items-center justify-center hover:scale-105"
                 >
                   <ChevronLeft size={22} />
                 </button>
@@ -169,7 +169,7 @@ export default function ProjectModal({
               {hasImages && tab === "images" && (
                 <button
                   onClick={(e) => { e.stopPropagation(); next(); }}
-                  className="absolute right-2 sm:right-3 z-40 w-12 h-12 sm:w-10 sm:h-10 rounded-full bg-black/60 text-white flex items-center justify-center hover:scale-105"
+                  className="absolute right-2 sm:right-3 translate-x-5 z-40 w-12 h-12 sm:w-10 sm:h-10 rounded-full bg-black/60 text-white flex items-center justify-center hover:scale-105"
                 >
                   <ChevronRight size={22} />
                 </button>
@@ -189,22 +189,7 @@ export default function ProjectModal({
               </div>
             )}
 
-            {/* Thumbnail strip */}
-            {hasImages && tab === "images" && (
-              <div className="w-full overflow-x-auto py-2 px-2">
-                <div className="flex gap-2 items-center">
-                  {images.map((src, i) => (
-                    <button
-                      key={i}
-                      onClick={(e) => { e.stopPropagation(); setIndex(i); }}
-                      className={`flex-shrink-0 rounded-md overflow-hidden border ${i === index ? "border-white" : "border-transparent"}`}
-                    >
-                      <Image src={src} alt={`thumb-${i}`} width={140} height={80} className={`object-cover ${i === index ? "opacity-100" : "opacity-80"}`} />
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
+            {/* Thumbnail strip removed per request */}
           </div>
 
           {/* Links & Tech Stack */}
