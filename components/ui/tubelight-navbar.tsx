@@ -53,11 +53,11 @@ export function NavBar({ items, className }: NavBarProps) {
   return (
     <div
       className={cn(
-        "fixed bottom-2 sm:top-0 sm:bottom-auto left-1/2 -translate-x-1/2 z-50 sm:pt-6 pointer-events-none",
+        "fixed bottom-1 sm:top-0 sm:bottom-auto left-1/2 -translate-x-1/2 z-50 sm:pt-6 pointer-events-none",
         className
       )}
     >
-      <div className="flex items-center gap-3 bg-background/5 border border-border backdrop-blur-lg py-1 px-1 rounded-full shadow-lg pointer-events-auto">
+      <div className="inline-flex w-[min(88vw,20.75rem)] items-center justify-evenly gap-4 bg-white/10 border border-white/20 backdrop-blur-2xl py-0.5 px-4 rounded-full shadow-[0_10px_30px_rgba(210,40,40,0.18)] backdrop-saturate-150 pointer-events-auto dark:bg-[#080304]/60 dark:border-[#ff5a5a]/20">
         {items.map((item) => {
           const Icon = item.icon;
           const isActive = activeTab === item.name;
@@ -68,34 +68,21 @@ export function NavBar({ items, className }: NavBarProps) {
               href={item.url}
               onClick={() => setActiveTab(item.name)}
               className={cn(
-                "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors",
-                "text-foreground/80 hover:text-primary",
-                isActive && "bg-muted text-primary"
+                "relative inline-flex h-10 w-10 items-center justify-center rounded-full bg-black/80 text-white/70 transition-colors duration-300 hover:text-white",
+                isActive && "text-[#ff4d4d]"
               )}
             >
-              <span className="hidden md:inline">{item.name}</span>
-              <span className="md:hidden">
+              {isActive && (
+                <>
+                  <span className="absolute -top-3 -right-3 h-14 w-14 rounded-full opacity-90 blur-3xl active-navbar-glow" />
+                  <span className="absolute inset-0 m-auto h-8 w-8 rounded-full bg-[#070707] ring-1 ring-white/10 shadow-[0_0_10px_rgba(0,0,0,0.35)]" />
+                  <span className="absolute bottom-[-0.45rem] left-1/2 h-2 w-2 -translate-x-1/2 rounded-full bg-[#ff3b3b] shadow-[0_0_10px_rgba(255,59,59,0.45)]" />
+                </>
+              )}
+
+              <span className="relative z-10">
                 <Icon size={18} strokeWidth={2.5} />
               </span>
-
-              {isActive && (
-                <motion.div
-                  layoutId="lamp"
-                  className="absolute inset-0 w-full bg-primary/5 rounded-full -z-10"
-                  initial={false}
-                  transition={{
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 30,
-                  }}
-                >
-                  <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-primary rounded-t-full">
-                    <div className="absolute w-12 h-6 bg-primary/20 rounded-full blur-md -top-2 -left-2" />
-                    <div className="absolute w-8 h-6 bg-primary/20 rounded-full blur-md -top-1" />
-                    <div className="absolute w-4 h-4 bg-primary/20 rounded-full blur-sm top-0 left-2" />
-                  </div>
-                </motion.div>
-              )}
             </Link>
           );
         })}

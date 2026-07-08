@@ -1,14 +1,13 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:where(.dark, .dark *));
-
 html,
 body {
   background: transparent;
   background-color: transparent;
   color: #1f1f1f;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 .dark body {
@@ -57,13 +56,25 @@ body {
 
 .fade-in-element {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transform: translateY(20px) translateX(0);
+  transition: opacity 0.8s cubic-bezier(.22,.95,.38,1), transform 0.8s cubic-bezier(.22,.95,.38,1);
 }
 
 .fade-in-element.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) translateX(0);
+}
+
+/* Entrance direction helpers */
+.fade-in-element.from-left {
+  transform: translateY(20px) translateX(-36px);
+}
+.fade-in-element.from-right {
+  transform: translateY(20px) translateX(36px);
+}
+.fade-in-element.from-left.is-visible,
+.fade-in-element.from-right.is-visible {
+  transform: translateY(0) translateX(0);
 }
 
 :root {
@@ -142,4 +153,30 @@ body {
 body {
   background-color: transparent;
   color: var(--foreground);
+  overflow-x: hidden;
+}
+
+/* Ember trail click effect - replaces previous lava-dot */
+.ember {
+  position: fixed;
+  pointer-events: none;
+  border-radius: 9999px;
+  transform: translateZ(0) translate(0,0) scale(1);
+  will-change: transform, opacity;
+  /* brighter center, darker edges for subtle glow */
+  background: radial-gradient(circle at 30% 30%, rgba(255,230,140,1) 0%, rgba(255,130,60,0.95) 45%, rgba(60,12,12,0.9) 100%);
+  box-shadow: 0 8px 26px rgba(255,120,45,0.16), 0 2px 6px rgba(0,0,0,0.28) inset;
+  opacity: 0.95;
+  z-index: 9999;
+}
+
+.active-navbar-glow {
+  background: radial-gradient(circle at top right, rgba(255, 80, 80, 0.95), rgba(255, 80, 80, 0.18) 40%, transparent 90%);
+}
+
+.ember.animate {
+  transform: translate(var(--tx, 0px), var(--ty, 0px)) scale(0.7);
+  opacity: 0.08;
+  transition: transform var(--d, 900ms) cubic-bezier(.22,.95,.38,1), opacity var(--d, 900ms) linear;
+  filter: blur(1px);
 }
