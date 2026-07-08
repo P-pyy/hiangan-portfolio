@@ -52,15 +52,17 @@ export default function ProjectModal({
 
   const lightShadow = {
     boxShadow: `
-      rgba(0, 0, 0, 0.5) 0px 20px 30px,
-      rgba(0, 0, 0, 0.4) 0px 12px 18px
+      rgba(232, 57, 13, 0.25) 0px 20px 50px,
+      rgba(0, 0, 0, 0.65) 0px 12px 30px,
+      rgba(0, 0, 0, 0.5) 0px 4px 12px
     `,
   };
 
   const darkShadow = {
     boxShadow: `
-      rgba(255, 255, 255, 0.2) 0px 4px 12px,
-      rgba(255, 255, 255, 0.1) 0px 8px 24px
+      rgba(232, 57, 13, 0.2) 0px 22px 60px,
+      rgba(0, 0, 0, 0.7) 0px 14px 28px,
+      rgba(0, 0, 0, 0.4) 0px 6px 14px
     `,
   };
 
@@ -88,10 +90,11 @@ export default function ProjectModal({
         tiltMaxAngleX={10}
         tiltMaxAngleY={10}
         glareEnable={false}
-        className="relative w-full max-w-3xl rounded-xl overflow-hidden group transition-all duration-300"
+        className="relative w-full max-w-3xl rounded-3xl overflow-hidden group transition-all duration-300 border border-white/10"
         style={{
           ...(isDarkMode ? lightShadow : darkShadow),
-          background: `radial-gradient(circle at 50% 0%, ${gradient})`,
+          background: `radial-gradient(circle at 50% 10%, ${gradient})`,
+          backgroundColor: "#090506",
         }}
       >
         {/* Close Button */}
