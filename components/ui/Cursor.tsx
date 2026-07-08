@@ -19,11 +19,19 @@ export const Cursor = () => {
       mousePosition.current = { x: e.clientX, y: e.clientY };
     };
 
+    const handleTouchMove = (e: TouchEvent) => {
+      const touch = e.touches[0] || e.changedTouches[0];
+      if (!touch) return;
+      mousePosition.current = { x: touch.clientX, y: touch.clientY };
+    };
+
     const handleMouseEnter = () => setIsHovering(true);
     const handleMouseLeave = () => setIsHovering(false);
 
     // Add event listeners
     window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("touchstart", handleTouchMove, { passive: true });
+    window.addEventListener("touchmove", handleTouchMove, { passive: true });
 
     // Select interactive elements. Make sure your interactive elements are actually reachable by the mouse.
     // For elements like div, you might need to add tabindex="0" or make them focusable/clickable.
@@ -31,6 +39,8 @@ export const Cursor = () => {
     interactiveElements.forEach((element) => {
       element.addEventListener("mouseenter", handleMouseEnter);
       element.addEventListener("mouseleave", handleMouseLeave);
+      element.addEventListener("touchstart", handleMouseEnter, { passive: true });
+      element.addEventListener("touchend", handleMouseLeave, { passive: true });
     });
 
     // Animation function for smooth movement
@@ -59,10 +69,14 @@ export const Cursor = () => {
     // Clean up
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("touchstart", handleTouchMove);
+      window.removeEventListener("touchmove", handleTouchMove);
 
       interactiveElements.forEach((element) => {
         element.removeEventListener("mouseenter", handleMouseEnter);
         element.removeEventListener("mouseleave", handleMouseLeave);
+        element.removeEventListener("touchstart", handleMouseEnter);
+        element.removeEventListener("touchend", handleMouseLeave);
       });
 
       cancelAnimationFrame(animationId);
@@ -73,7 +87,7 @@ export const Cursor = () => {
   if (typeof window === "undefined") return null;
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-100000 sm:block hidden ">
+    <div className="pointer-events-none fixed inset-0 z-100000 block">
       <div
         className="absolute rounded-full dark:bg-white bg-black "
         style={{
