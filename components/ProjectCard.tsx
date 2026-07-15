@@ -27,29 +27,12 @@ export default function ProjectCard({
         }
     }, []);
 
-    const lightShadow = {
-        boxShadow: `
-      rgba(0, 0, 0, 0.5) 0px 15px 25px,
-      rgba(0, 0, 0, 0.35) 0px 10px 15px,
-      rgba(0, 0, 0, 0.25) 0px 4px 6px
-    `,
-    };
-
-    const darkShadow = {
-        boxShadow: `
-      rgba(200, 200, 200, 0.2) 2px 2px 6px,
-      rgba(160, 160, 160, 0.15) 0px 6px 10px
-    `,
-    };
+    const gradientClass = gradient === "#e8390d, rgb(8, 0, 10)" ? "alt" : "default";
 
     return (
         <div
             onClick={onClick}
-            className="relative cursor-pointer border-[10px] dark:border-slate-900 rounded-xl overflow-hidden group transition-all duration-300"
-            style={{
-                ...(isDarkMode ? lightShadow : darkShadow),
-                background: `radial-gradient(circle at 50% 0%, ${gradient})`,
-            }}
+            className={`relative cursor-pointer border-[10px] dark:border-slate-900 rounded-xl overflow-hidden group transition-all duration-300 project-card project-card-bg-${gradientClass} ${isDarkMode ? "project-card-shadow-dark" : "project-card-shadow-light"}`}
         >
             {/* Overlay */}
             <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0" />
@@ -63,13 +46,11 @@ export default function ProjectCard({
                 </div>
 
                 {/* Tech stack with overlapping icons */}
-                <div className="flex justify-center md:justify-end transition-all duration-500">
+                <div className="flex justify-center md:justify-end transition-all duration-500 project-card-tech-stack">
                     {techStack.map((tech, index) => (
                         <div
                             key={index}
-                            className={`w-12 h-12 rounded-full bg-white dark:bg-neutral-900 flex items-center justify-center text-[24px] sm:text-[28px] shadow-md transition-all duration-500
-        -ml-4 group-hover:ml-0`}
-                            style={{ zIndex: techStack.length - index }}
+                            className="w-12 h-12 rounded-full bg-white dark:bg-neutral-900 flex items-center justify-center text-[24px] sm:text-[28px] shadow-md transition-all duration-500 -ml-4 group-hover:ml-0"
                         >
                             {techIconMap[tech] || null}
                         </div>
