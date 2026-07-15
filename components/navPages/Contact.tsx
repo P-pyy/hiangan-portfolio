@@ -1,13 +1,23 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useTheme } from "next-themes";
 import { Mail, Send } from "lucide-react";
 import emailjs from "@emailjs/browser";
 import { jetbrainsMono } from "@/app/font";
 import { toast } from "sonner";
 
 export default function Contact() {
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isDarkMode = mounted && resolvedTheme === "dark";
+  const formBg = isDarkMode ? '#000000' : 'rgba(255,255,255,0.7)';
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -53,7 +63,8 @@ export default function Contact() {
 
       <form
         onSubmit={handleSubmit}
-        className="mx-auto flex flex-col gap-4 bg-white/70 dark:bg-black/50 p-8 rounded-lg"
+        style={{ backgroundColor: formBg, border: isDarkMode ? '1px solid rgba(255,255,255,0.1)' : undefined }}
+        className="mx-auto flex flex-col gap-4 p-8 rounded-lg dark-solid-card"
       >
         <input
           type="text"

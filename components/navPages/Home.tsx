@@ -66,6 +66,9 @@ export function Home() {
                 loop: true,
                 delay: 30,
                 deleteSpeed: 10,
+                skipAddStyles: true,
+                wrapperClassName: "typewriter-text",
+                cursorClassName: "typewriter-cursor",
               }}
             />
           </span>

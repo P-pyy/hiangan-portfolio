@@ -163,8 +163,7 @@ export function Projects() {
           <div
             key={index}
             onClick={() => setSelectedProject(project)}
-            className={`fade-in-element ${index % 2 === 0 ? "from-left" : "from-right"} group cursor-pointer bg-gradient-to-br from-black via-slate-950 to-[#6c0505] border border-gray-800 rounded-3xl p-6 hover:border-gray-700 hover:shadow-lg hover:shadow-[#e8390d]/25 will-change-transform`}
-            style={{ transitionDelay: `${index * 160}ms` }}
+            className={`fade-in-element ${index % 2 === 0 ? "from-left" : "from-right"} group cursor-pointer bg-gradient-to-br from-black via-slate-950 to-[#6c0505] border border-gray-800 rounded-3xl p-6 hover:border-gray-700 hover:shadow-lg hover:shadow-[#e8390d]/25 will-change-transform project-card-delay-${index}`}
           >
             <div className="grid gap-6 md:grid-cols-[1fr_auto] items-start">
               <div>

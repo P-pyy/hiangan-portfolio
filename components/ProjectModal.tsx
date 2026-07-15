@@ -34,12 +34,11 @@ export default function ProjectModal({
   onClose,
 }: ProjectModalProps) {
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const [tab, setTab] = useState<"images" | "video">("images");
   const [index, setIndex] = useState(0);
+  const gradientClass = gradient === "#e8390d, rgb(8, 0, 10)" ? "alt" : "default";
 
   useEffect(() => {
-    setMounted(true);
     if (typeof window !== "undefined") {
       setIsDarkMode(window.matchMedia("(prefers-color-scheme: dark)").matches);
     }
@@ -49,22 +48,6 @@ export default function ProjectModal({
     // reset index when images change
     setIndex(0);
   }, [images]);
-
-  const lightShadow = {
-    boxShadow: `
-      rgba(232, 57, 13, 0.25) 0px 20px 50px,
-      rgba(0, 0, 0, 0.65) 0px 12px 30px,
-      rgba(0, 0, 0, 0.5) 0px 4px 12px
-    `,
-  };
-
-  const darkShadow = {
-    boxShadow: `
-      rgba(232, 57, 13, 0.2) 0px 22px 60px,
-      rgba(0, 0, 0, 0.7) 0px 14px 28px,
-      rgba(0, 0, 0, 0.4) 0px 6px 14px
-    `,
-  };
 
   const showVideoTab = Boolean(video);
   const displayImages = (images && images.length > 0) ? images : (thumbnail ? [thumbnail] : []);
@@ -90,16 +73,12 @@ export default function ProjectModal({
         tiltMaxAngleX={10}
         tiltMaxAngleY={10}
         glareEnable={false}
-        className="relative w-full max-w-3xl rounded-3xl overflow-hidden group transition-all duration-300 border border-white/10"
-        style={{
-          ...(isDarkMode ? lightShadow : darkShadow),
-          background: `radial-gradient(circle at 50% 10%, ${gradient})`,
-          backgroundColor: "#090506",
-        }}
+        className={`relative w-full max-w-3xl rounded-3xl overflow-hidden group transition-all duration-300 border border-white/10 project-modal project-modal-bg-${gradientClass} ${isDarkMode ? "project-modal-shadow-dark" : "project-modal-shadow-light"}`}
       >
         {/* Close Button */}
         <button
           onClick={onClose}
+          aria-label="Close project modal"
           className="absolute top-3 right-3 text-white bg-black/30 hover:bg-black/50 p-2 rounded-full z-50"
         >
           <X size={20} />
@@ -119,6 +98,7 @@ export default function ProjectModal({
               {hasImages && multipleImages && tab === "images" && (
                 <button
                   onClick={(e) => { e.stopPropagation(); prev(); }}
+                  aria-label="Previous image"
                   className="absolute left-2 sm:left-3 -translate-x-5 z-40 w-12 h-12 sm:w-10 sm:h-10 rounded-full bg-black/60 text-white flex items-center justify-center hover:scale-105"
                 >
                   <ChevronLeft size={22} />
@@ -150,6 +130,7 @@ export default function ProjectModal({
               {hasImages && multipleImages && tab === "images" && (
                 <button
                   onClick={(e) => { e.stopPropagation(); next(); }}
+                  aria-label="Next image"
                   className="absolute right-2 sm:right-3 translate-x-5 z-40 w-12 h-12 sm:w-10 sm:h-10 rounded-full bg-black/60 text-white flex items-center justify-center hover:scale-105"
                 >
                   <ChevronRight size={22} />
@@ -164,6 +145,7 @@ export default function ProjectModal({
                   <button
                     key={i}
                     onClick={(e) => { e.stopPropagation(); setIndex(i); }}
+                    aria-label={`Show image ${i + 1}`}
                     className={`w-2 h-2 rounded-full ${i === index ? "bg-white" : "bg-white/30"}`}
                   />
                 ))}
@@ -194,12 +176,11 @@ export default function ProjectModal({
               </a>
             </div>
 
-            <div className="flex justify-center md:justify-end transition-all duration-500">
+            <div className="flex justify-center md:justify-end transition-all duration-500 project-modal-tech-stack">
               {techStack.map((tech, index) => (
                 <div
                   key={index}
-                  className={`w-12 h-12 rounded-full bg-white dark:bg-neutral-900 flex items-center justify-center text-[24px] sm:text-[28px] shadow-md transition-all duration-500`}
-                  style={{ zIndex: techStack.length - index }}
+                  className="w-12 h-12 rounded-full bg-white dark:bg-neutral-900 flex items-center justify-center text-[24px] sm:text-[28px] shadow-md transition-all duration-500"
                 >
                   {techIconMap[tech] || null}
                 </div>
