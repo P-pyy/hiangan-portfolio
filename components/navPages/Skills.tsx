@@ -12,10 +12,10 @@ const skillCategories = [
         skills: [
             { name: "HTML5", icon: "/html.svg", hoverColor: "group-hover:text-orange-500" },
             { name: "CSS3", icon: "/css.svg", hoverColor: "group-hover:text-blue-500" },
-            { name: "JavaScript", icon: "/js.svg", hoverColor: "group-hover:text-yellow-400" },
-            { name: "TypeScript", icon: "/ts.svg", hoverColor: "group-hover:text-sky-500" },
+            { name: "JavaScript", icon: "/javascript.svg", hoverColor: "group-hover:text-yellow-400" },
+            { name: "TypeScript", icon: "/typescript.svg", hoverColor: "group-hover:text-sky-500" },
             { name: "React", icon: "/react.svg", hoverColor: "group-hover:text-cyan-300" },
-            { name: "Next.js", icon: "/next.svg", hoverColor: "group-hover:text-black dark:group-hover:text-white" },
+            { name: "Next.js", icon: "/nextjs.svg", hoverColor: "group-hover:text-black dark:group-hover:text-white" },
             { name: "Tailwind CSS", icon: "/tailwind.svg", hoverColor: "group-hover:text-cyan-400" },
             { name: "Bootstrap", icon: "/bootstrap.svg", hoverColor: "group-hover:text-purple-600" },
         ]
@@ -25,7 +25,7 @@ const skillCategories = [
         description: "Powering the logic, database, and server-side functionalities.",
         icon: <Database className="w-8 h-8" />,
         skills: [
-            { name: "Node.js", icon: "/node.svg", hoverColor: "group-hover:text-green-600" },
+            { name: "Node.js", icon: "/nodejs.svg", hoverColor: "group-hover:text-green-600" },
             { name: "Express.js", icon: "/express.svg", hoverColor: "group-hover:text-gray-500" },
             { name: "MongoDB", icon: "/mongo.svg", hoverColor: "group-hover:text-green-500" },
             { name: "MySQL", icon: "/mysql.svg", hoverColor: "group-hover:text-blue-600" },
@@ -39,12 +39,12 @@ const skillCategories = [
         description: "Tools and platforms that enhance productivity and development.",
         icon: <Zap className="w-8 h-8" />,
         skills: [
-            { name: "Git", icon: <FaGitAlt />, hoverColor: "group-hover:text-orange-600" },
-            { name: "GitHub", icon: "/github-icon.svg", hoverColor: "group-hover:text-gray-700 dark:group-hover:text-gray-300" },
-            { name: "Figma", icon: "/figma-icon.svg", hoverColor: "group-hover:text-purple-500" },
-            { name: "VS Code", icon: "/vscode-icon.svg", hoverColor: "group-hover:text-blue-500" },
-            { name: "Vercel", icon: "/vercel-icon.svg", hoverColor: "group-hover:text-black dark:group-hover:text-white" },
-            { name: "npm", icon: "/npm-icon.svg", hoverColor: "group-hover:text-red-600" },
+            { name: "Git", icon: "/git.svg", hoverColor: "group-hover:text-orange-600" },
+            { name: "GitHub", icon: "/github.svg", hoverColor: "group-hover:text-gray-700 dark:group-hover:text-gray-300" },
+            { name: "Figma", icon: "/figma.svg", hoverColor: "group-hover:text-purple-500" },
+            { name: "VS Code", icon: "/vscode.svg", hoverColor: "group-hover:text-blue-500" },
+            { name: "Vercel", icon: "/vercel.svg", hoverColor: "group-hover:text-black dark:group-hover:text-white" },
+            { name: "npm", icon: "/npm.svg", hoverColor: "group-hover:text-red-600" },
         ]
     }
 ];
