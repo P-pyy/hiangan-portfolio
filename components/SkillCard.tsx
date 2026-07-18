@@ -40,9 +40,29 @@ export default function SkillCard({
     `,
   };
 
+  // Extract the color class from hoverColor string
+  // e.g., "group-hover:text-cyan-300" -> "text-cyan-300"
+  const colorClass = hoverColor.replace("group-hover:", "").replace("dark:group-hover:", "");
+  
+  // Create responsive color classes
+  // Mobile: always show color, Desktop: only on hover
+  const responsiveColorClass = hoverColor
+    .split(" ")
+    .map(color => {
+      if (color.startsWith("dark:group-hover:")) {
+        const darkColor = color.replace("dark:group-hover:", "");
+        return `dark:${darkColor} dark:md:${color}`;
+      } else if (color.startsWith("group-hover:")) {
+        const baseColor = color.replace("group-hover:", "");
+        return `${baseColor} md:${color}`;
+      }
+      return color;
+    })
+    .join(" ");
+
   const iconClasses = cn(
     "transition-all duration-300 group-hover:-translate-y-2",
-    hoverColor
+    responsiveColorClass
   );
 
   return (
