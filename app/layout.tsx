@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Providers } from "./providers";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
-import { metrophobic, jetbrainsMono, poppins } from "./font";
+import { inter, jetbrainsMono } from "./font";
 import { Navbar } from "@/components/Navbar";
 import ScrollProgress from "@/components/ScrollProgress";
 import ScrollToTopBtn from "@/components/ScrollToTop";
@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={poppins.className}
+        className={`${inter.className} ${jetbrainsMono.variable}`}
       >
         <Providers>
           <AnimatedBackground />
