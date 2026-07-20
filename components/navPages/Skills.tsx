@@ -63,7 +63,11 @@ export default function SkillsSection() {
 
             <div className="flex flex-col gap-8 sm:gap-12">
                 {skillCategories.map((category, idx) => (
-                    <div key={idx} className="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8 items-start p-4 sm:p-6 lg:p-8 border-2 border-[#e8390d] dark:border-[#ff6347] rounded-2xl bg-gradient-to-br from-red-950/10 to-transparent dark:from-red-950/20">
+                    <div key={idx} className="relative flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8 items-start p-4 sm:p-6 lg:p-8 border-2 border-[#a10c0c] dark:border-[#ff3c30] rounded-2xl bg-gradient-to-br from-[#a10c0c]/20 to-transparent dark:from-[#ff3c30]/20 overflow-hidden">
+                        <span className="pointer-events-none absolute top-3 right-3 h-0.5 w-8 bg-[#e8390d] dark:bg-[#ff6347] rounded-full" />
+                        <span className="pointer-events-none absolute top-3 right-3 w-0.5 h-8 bg-[#e8390d] dark:bg-[#ff6347] rounded-full" />
+                        <span className="pointer-events-none absolute bottom-3 left-3 h-0.5 w-8 bg-[#e8390d] dark:bg-[#ff6347] rounded-full" />
+                        <span className="pointer-events-none absolute bottom-3 left-3 w-0.5 h-8 bg-[#e8390d] dark:bg-[#ff6347] rounded-full" />
                         {/* Left side - Category info */}
                         <div className="flex-shrink-0 w-full sm:w-auto lg:w-1/3">
                             <div className="flex flex-col gap-2 sm:gap-4">
@@ -71,7 +75,9 @@ export default function SkillsSection() {
                                     <div className="p-2 sm:p-3 border-2 border-[#e8390d] dark:border-[#ff6347] rounded-lg text-[#e8390d] dark:text-[#ff6347]">
                                         {category.icon}
                                     </div>
-                                    <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold">{category.title}</h2>
+                                    <h2 className={category.title === "Tools & Technologies" ? "text-xl sm:text-2xl lg:text-3xl font-bold whitespace-nowrap" : "text-xl sm:text-2xl lg:text-3xl font-bold"}>
+                                        {category.title}
+                                    </h2>
                                 </div>
                                 <div className="flex items-start gap-2">
                                     <span className="text-[#e8390d] dark:text-[#ff6347] text-lg mt-0.5 flex-shrink-0">»</span>

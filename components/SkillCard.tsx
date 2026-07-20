@@ -27,16 +27,17 @@ export default function SkillCard({
 
   const lightShadow = {
     boxShadow: `
-      rgba(0, 0, 0, 0.5) 0px 15px 25px,
-      rgba(0, 0, 0, 0.35) 0px 10px 15px,
-      rgba(0, 0, 0, 0.25) 0px 4px 6px
+      0 0 0 1px rgba(150, 20, 20, 0.14),
+      0 6px 18px rgba(150, 20, 20, 0.14),
+      0 0 14px rgba(150, 20, 20, 0.12)
     `,
   };
 
   const darkShadow = {
     boxShadow: `
-      rgba(200, 200, 200, 0.2) 2px 2px 6px,
-      rgba(160, 160, 160, 0.15) 0px 6px 10px
+      0 0 0 1px rgba(150, 20, 20, 0.16),
+      0 8px 20px rgba(150, 20, 20, 0.16),
+      0 0 18px rgba(150, 20, 20, 0.18)
     `,
   };
 
